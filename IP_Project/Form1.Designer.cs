@@ -32,6 +32,15 @@
             label1 = new Label();
             pbDisplay = new PictureBox();
             btnStart = new Button();
+            btnUpload = new Button();
+            btnGrayscale = new Button();
+            btnNegative = new Button();
+            btnSepia = new Button();
+            btnNoise = new Button();
+            btnChromatic = new Button();
+            btnUploadVideo = new Button();
+            btnPlay = new Button();
+            btnPause = new Button();
             ((System.ComponentModel.ISupportInitialize)pbDisplay).BeginInit();
             SuspendLayout();
             // 
@@ -56,7 +65,7 @@
             // 
             pbDisplay.Location = new Point(12, 51);
             pbDisplay.Name = "pbDisplay";
-            pbDisplay.Size = new Size(593, 347);
+            pbDisplay.Size = new Size(593, 307);
             pbDisplay.TabIndex = 2;
             pbDisplay.TabStop = false;
             // 
@@ -70,11 +79,110 @@
             btnStart.UseVisualStyleBackColor = true;
             btnStart.Click += btnStart_Click;
             // 
+            // btnUpload
+            // 
+            btnUpload.Location = new Point(375, 404);
+            btnUpload.Name = "btnUpload";
+            btnUpload.Size = new Size(112, 34);
+            btnUpload.TabIndex = 4;
+            btnUpload.Text = "Load";
+            btnUpload.UseVisualStyleBackColor = true;
+            btnUpload.Click += btnUpload_Click;
+            // 
+            // btnGrayscale
+            // 
+            btnGrayscale.Location = new Point(257, 404);
+            btnGrayscale.Name = "btnGrayscale";
+            btnGrayscale.Size = new Size(112, 34);
+            btnGrayscale.TabIndex = 5;
+            btnGrayscale.Text = "Grayscale";
+            btnGrayscale.UseVisualStyleBackColor = true;
+            btnGrayscale.Click += btnGrayscale_Click;
+            // 
+            // btnNegative
+            // 
+            btnNegative.Location = new Point(139, 404);
+            btnNegative.Name = "btnNegative";
+            btnNegative.Size = new Size(112, 34);
+            btnNegative.TabIndex = 6;
+            btnNegative.Text = "Negative";
+            btnNegative.UseVisualStyleBackColor = true;
+            btnNegative.Click += btnNegative_Click;
+            // 
+            // btnSepia
+            // 
+            btnSepia.Location = new Point(21, 404);
+            btnSepia.Name = "btnSepia";
+            btnSepia.Size = new Size(112, 34);
+            btnSepia.TabIndex = 7;
+            btnSepia.Text = "Sepia";
+            btnSepia.UseVisualStyleBackColor = true;
+            btnSepia.Click += btnSepia_Click;
+            // 
+            // btnNoise
+            // 
+            btnNoise.Location = new Point(494, 364);
+            btnNoise.Name = "btnNoise";
+            btnNoise.Size = new Size(112, 34);
+            btnNoise.TabIndex = 8;
+            btnNoise.Text = "Noise";
+            btnNoise.UseVisualStyleBackColor = true;
+            btnNoise.Click += btnNoise_Click;
+            // 
+            // btnChromatic
+            // 
+            btnChromatic.Location = new Point(376, 364);
+            btnChromatic.Name = "btnChromatic";
+            btnChromatic.Size = new Size(112, 34);
+            btnChromatic.TabIndex = 9;
+            btnChromatic.Text = "Chromatic";
+            btnChromatic.UseVisualStyleBackColor = true;
+            btnChromatic.Click += btnChromatic_Click;
+            // 
+            // btnUploadVideo
+            // 
+            btnUploadVideo.Location = new Point(258, 364);
+            btnUploadVideo.Name = "btnUploadVideo";
+            btnUploadVideo.Size = new Size(112, 34);
+            btnUploadVideo.TabIndex = 10;
+            btnUploadVideo.Text = "Load video";
+            btnUploadVideo.UseVisualStyleBackColor = true;
+            btnUploadVideo.Click += btnUploadVideo_Click;
+            // 
+            // btnPlay
+            // 
+            btnPlay.Location = new Point(140, 364);
+            btnPlay.Name = "btnPlay";
+            btnPlay.Size = new Size(112, 34);
+            btnPlay.TabIndex = 11;
+            btnPlay.Text = "Play";
+            btnPlay.UseVisualStyleBackColor = true;
+            btnPlay.Click += btnPlay_Click;
+            // 
+            // btnPause
+            // 
+            btnPause.Location = new Point(22, 364);
+            btnPause.Name = "btnPause";
+            btnPause.Size = new Size(112, 34);
+            btnPause.TabIndex = 12;
+            btnPause.Text = "Pause";
+            btnPause.UseVisualStyleBackColor = true;
+            btnPause.Click += btnPause_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(618, 450);
+            Controls.Add(btnPause);
+            Controls.Add(btnPlay);
+            Controls.Add(btnUploadVideo);
+            Controls.Add(btnChromatic);
+            Controls.Add(btnNoise);
+            Controls.Add(btnSepia);
+            Controls.Add(btnNegative);
+            Controls.Add(btnGrayscale);
+            Controls.Add(btnUpload);
             Controls.Add(btnStart);
             Controls.Add(pbDisplay);
             Controls.Add(label1);
@@ -94,5 +202,14 @@
         private Label label1;
         private PictureBox pbDisplay;
         private Button btnStart;
+        private Button btnUpload;
+        private Button btnGrayscale;
+        private Button btnNegative;
+        private Button btnSepia;
+        private Button btnNoise;
+        private Button btnChromatic;
+        private Button btnUploadVideo;
+        private Button btnPlay;
+        private Button btnPause;
     }
 }
