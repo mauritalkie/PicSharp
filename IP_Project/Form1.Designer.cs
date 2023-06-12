@@ -41,13 +41,14 @@
             btnUploadVideo = new Button();
             btnPlay = new Button();
             btnPause = new Button();
+            btnDownload = new Button();
             ((System.ComponentModel.ISupportInitialize)pbDisplay).BeginInit();
             SuspendLayout();
             // 
             // cbCamera
             // 
             cbCamera.FormattingEnabled = true;
-            cbCamera.Location = new Point(150, 12);
+            cbCamera.Location = new Point(117, 12);
             cbCamera.Name = "cbCamera";
             cbCamera.Size = new Size(334, 33);
             cbCamera.TabIndex = 0;
@@ -55,7 +56,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(68, 15);
+            label1.Location = new Point(35, 15);
             label1.Name = "label1";
             label1.Size = new Size(76, 25);
             label1.TabIndex = 1;
@@ -65,7 +66,7 @@
             // 
             pbDisplay.Location = new Point(12, 51);
             pbDisplay.Name = "pbDisplay";
-            pbDisplay.Size = new Size(593, 307);
+            pbDisplay.Size = new Size(475, 387);
             pbDisplay.TabIndex = 2;
             pbDisplay.TabStop = false;
             // 
@@ -81,7 +82,7 @@
             // 
             // btnUpload
             // 
-            btnUpload.Location = new Point(375, 404);
+            btnUpload.Location = new Point(494, 164);
             btnUpload.Name = "btnUpload";
             btnUpload.Size = new Size(112, 34);
             btnUpload.TabIndex = 4;
@@ -91,7 +92,7 @@
             // 
             // btnGrayscale
             // 
-            btnGrayscale.Location = new Point(257, 404);
+            btnGrayscale.Location = new Point(494, 124);
             btnGrayscale.Name = "btnGrayscale";
             btnGrayscale.Size = new Size(112, 34);
             btnGrayscale.TabIndex = 5;
@@ -101,7 +102,7 @@
             // 
             // btnNegative
             // 
-            btnNegative.Location = new Point(139, 404);
+            btnNegative.Location = new Point(494, 84);
             btnNegative.Name = "btnNegative";
             btnNegative.Size = new Size(112, 34);
             btnNegative.TabIndex = 6;
@@ -111,7 +112,7 @@
             // 
             // btnSepia
             // 
-            btnSepia.Location = new Point(21, 404);
+            btnSepia.Location = new Point(494, 44);
             btnSepia.Name = "btnSepia";
             btnSepia.Size = new Size(112, 34);
             btnSepia.TabIndex = 7;
@@ -131,7 +132,7 @@
             // 
             // btnChromatic
             // 
-            btnChromatic.Location = new Point(376, 364);
+            btnChromatic.Location = new Point(494, 324);
             btnChromatic.Name = "btnChromatic";
             btnChromatic.Size = new Size(112, 34);
             btnChromatic.TabIndex = 9;
@@ -141,7 +142,7 @@
             // 
             // btnUploadVideo
             // 
-            btnUploadVideo.Location = new Point(258, 364);
+            btnUploadVideo.Location = new Point(493, 284);
             btnUploadVideo.Name = "btnUploadVideo";
             btnUploadVideo.Size = new Size(112, 34);
             btnUploadVideo.TabIndex = 10;
@@ -151,7 +152,7 @@
             // 
             // btnPlay
             // 
-            btnPlay.Location = new Point(140, 364);
+            btnPlay.Location = new Point(494, 244);
             btnPlay.Name = "btnPlay";
             btnPlay.Size = new Size(112, 34);
             btnPlay.TabIndex = 11;
@@ -161,7 +162,7 @@
             // 
             // btnPause
             // 
-            btnPause.Location = new Point(22, 364);
+            btnPause.Location = new Point(493, 204);
             btnPause.Name = "btnPause";
             btnPause.Size = new Size(112, 34);
             btnPause.TabIndex = 12;
@@ -169,11 +170,22 @@
             btnPause.UseVisualStyleBackColor = true;
             btnPause.Click += btnPause_Click;
             // 
+            // btnDownload
+            // 
+            btnDownload.Location = new Point(493, 4);
+            btnDownload.Name = "btnDownload";
+            btnDownload.Size = new Size(112, 34);
+            btnDownload.TabIndex = 13;
+            btnDownload.Text = "Save";
+            btnDownload.UseVisualStyleBackColor = true;
+            btnDownload.Click += btnDownload_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(618, 450);
+            Controls.Add(btnDownload);
             Controls.Add(btnPause);
             Controls.Add(btnPlay);
             Controls.Add(btnUploadVideo);
@@ -211,5 +223,6 @@
         private Button btnUploadVideo;
         private Button btnPlay;
         private Button btnPause;
+        private Button btnDownload;
     }
 }

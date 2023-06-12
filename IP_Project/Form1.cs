@@ -332,9 +332,9 @@ namespace IP_Project
             pbDisplay.Image = bitmapVideo;
             bitmapVideo = new Bitmap(originVideo.Width, originVideo.Height);
 
-            for(int i = 0; i < originVideo.Width; i++)
+            for (int i = 0; i < originVideo.Width; i++)
             {
-                for(int j = 0; j < originVideo.Height; j++)
+                for (int j = 0; j < originVideo.Height; j++)
                 {
                     green = originVideo.GetPixel(i, j).G;
 
@@ -363,11 +363,11 @@ namespace IP_Project
             pbDisplay.Image = bitmapVideo;
             bitmapVideo = new Bitmap(originVideo.Width, originVideo.Height);
 
-            for( int i = 0; i < originVideo.Width; i++)
+            for (int i = 0; i < originVideo.Width; i++)
             {
-                for( int j = 0; j < originVideo.Height; j++)
+                for (int j = 0; j < originVideo.Height; j++)
                 {
-                    if(random.Next(1, 100) <= percentage)
+                    if (random.Next(1, 100) <= percentage)
                     {
                         brightness = random.Next(minRange, maxRange) / 100.0f;
                         currentColorVideo = originVideo.GetPixel(i, j);
@@ -376,14 +376,14 @@ namespace IP_Project
                         green = (int)(currentColorVideo.G * brightness);
                         blue = (int)(currentColorVideo.B * brightness);
 
-                        if(red > 255) red = 255;
-                        else if(red < 0) red = 0;
+                        if (red > 255) red = 255;
+                        else if (red < 0) red = 0;
 
-                        if(green > 255) green = 255;
-                        else if(green < 0) green = 0;
+                        if (green > 255) green = 255;
+                        else if (green < 0) green = 0;
 
                         if (blue > 255) blue = 255;
-                        else if(blue < 0) blue = 0;
+                        else if (blue < 0) blue = 0;
 
                         newColorVideo = Color.FromArgb(red, green, blue);
                     }
@@ -402,9 +402,9 @@ namespace IP_Project
             pbDisplay.Image = bitmapVideo;
             bitmapVideo = new Bitmap(originVideo.Width, originVideo.Height);
 
-            for(int i = 0; i<originVideo.Width; i++)
+            for (int i = 0; i < originVideo.Width; i++)
             {
-                for(int j = 0; j<originVideo.Height; j++)
+                for (int j = 0; j < originVideo.Height; j++)
                 {
                     currentColorVideo = originVideo.GetPixel(i, j);
                     newColorVideo = Color.FromArgb(255 - currentColorVideo.R, 255 - currentColorVideo.G, 255 - currentColorVideo.B);
@@ -415,13 +415,13 @@ namespace IP_Project
 
         private void grayScale()
         {
-            if(bitmapVideo == null) return;
+            if (bitmapVideo == null) return;
             pbDisplay.Image = bitmapVideo;
             bitmapVideo = new Bitmap(originVideo.Width, originVideo.Height);
 
-            for(int i = 0; i < originVideo.Width; i++)
+            for (int i = 0; i < originVideo.Width; i++)
             {
-                for(int j = 0; j < originVideo.Height; j++)
+                for (int j = 0; j < originVideo.Height; j++)
                 {
                     currentColor = originVideo.GetPixel(i, j);
                     newColorVideo = Color.FromArgb(currentColor.R, currentColor.R, currentColor.R);
@@ -435,9 +435,9 @@ namespace IP_Project
             if (bitmapVideo == null) return;
             pbDisplay.Image = bitmapVideo;
             bitmapVideo = new Bitmap(originVideo.Width, originVideo.Height);
-            for(int i = 0; i < originVideo.Width; i++)
+            for (int i = 0; i < originVideo.Width; i++)
             {
-                for(int j = 0; j < originVideo.Height; j++)
+                for (int j = 0; j < originVideo.Height; j++)
                 {
                     currentColorVideo = originVideo.GetPixel(i, j);
 
@@ -462,6 +462,18 @@ namespace IP_Project
                     bitmapVideo.SetPixel(i, j, Color.FromArgb(alpha, red, green, blue));
                 }
             }
+        }
+
+        private void btnDownload_Click(object sender, EventArgs e)
+        {
+            if (pbDisplay.Image == null) return;
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "JPEG(*.JPG)|*.JPG|BMP(*.BMP)|*.BMP";
+            Image image = pbDisplay.Image;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                image.Save(saveFileDialog.FileName);
         }
     }
 }
