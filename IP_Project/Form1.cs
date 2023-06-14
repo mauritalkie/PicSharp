@@ -1,6 +1,7 @@
 using AForge.Video;
 using AForge.Video.DirectShow;
 using Emgu.CV;
+using Emgu.CV.Structure;
 
 namespace IP_Project
 {
@@ -48,7 +49,26 @@ namespace IP_Project
 
         private void VideoCaptureDevice_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
-            pbDisplay.Image = (Bitmap)eventArgs.Frame.Clone();
+            int faceCounter = 0;
+            Font font = new Font("Arial", 20, FontStyle.Regular);
+            Brush brush = new SolidBrush(Color.FromKnownColor(KnownColor.Black));
+
+            Bitmap display = (Bitmap)eventArgs.Frame.Clone();
+            CascadeClassifier cascadeClassifier = new CascadeClassifier("..\\..\\..\\haarcascade_frontalface_default.xml");
+            Image<Bgr, byte> emguImg = display.ToImage<Bgr, byte>();
+            Rectangle[] rectangles = cascadeClassifier.DetectMultiScale(emguImg);
+            foreach(Rectangle rectangle in rectangles)
+            {
+                using(Graphics graphics = Graphics.FromImage(display))
+                {
+                    using(Pen pen = new Pen(Color.Blue, 5))
+                    {
+                        graphics.DrawRectangle(pen, rectangle);
+                        graphics.DrawString((++faceCounter).ToString(), font, brush, rectangle);
+                    }
+                }
+            }
+            pbDisplay.Image = display;
         }
 
         private void Form1_Load(object sender, EventArgs e)
