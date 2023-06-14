@@ -42,6 +42,7 @@
             btnPlay = new Button();
             btnPause = new Button();
             btnDownload = new Button();
+            btnHistogram = new Button();
             ((System.ComponentModel.ISupportInitialize)pbDisplay).BeginInit();
             SuspendLayout();
             // 
@@ -72,7 +73,7 @@
             // 
             // btnStart
             // 
-            btnStart.Location = new Point(493, 404);
+            btnStart.Location = new Point(12, 444);
             btnStart.Name = "btnStart";
             btnStart.Size = new Size(112, 34);
             btnStart.TabIndex = 3;
@@ -82,7 +83,7 @@
             // 
             // btnUpload
             // 
-            btnUpload.Location = new Point(494, 164);
+            btnUpload.Location = new Point(248, 484);
             btnUpload.Name = "btnUpload";
             btnUpload.Size = new Size(112, 34);
             btnUpload.TabIndex = 4;
@@ -92,7 +93,7 @@
             // 
             // btnGrayscale
             // 
-            btnGrayscale.Location = new Point(494, 124);
+            btnGrayscale.Location = new Point(366, 484);
             btnGrayscale.Name = "btnGrayscale";
             btnGrayscale.Size = new Size(112, 34);
             btnGrayscale.TabIndex = 5;
@@ -102,7 +103,7 @@
             // 
             // btnNegative
             // 
-            btnNegative.Location = new Point(494, 84);
+            btnNegative.Location = new Point(12, 524);
             btnNegative.Name = "btnNegative";
             btnNegative.Size = new Size(112, 34);
             btnNegative.TabIndex = 6;
@@ -112,7 +113,7 @@
             // 
             // btnSepia
             // 
-            btnSepia.Location = new Point(494, 44);
+            btnSepia.Location = new Point(130, 524);
             btnSepia.Name = "btnSepia";
             btnSepia.Size = new Size(112, 34);
             btnSepia.TabIndex = 7;
@@ -122,7 +123,7 @@
             // 
             // btnNoise
             // 
-            btnNoise.Location = new Point(494, 364);
+            btnNoise.Location = new Point(130, 444);
             btnNoise.Name = "btnNoise";
             btnNoise.Size = new Size(112, 34);
             btnNoise.TabIndex = 8;
@@ -132,7 +133,7 @@
             // 
             // btnChromatic
             // 
-            btnChromatic.Location = new Point(494, 324);
+            btnChromatic.Location = new Point(248, 444);
             btnChromatic.Name = "btnChromatic";
             btnChromatic.Size = new Size(112, 34);
             btnChromatic.TabIndex = 9;
@@ -142,7 +143,7 @@
             // 
             // btnUploadVideo
             // 
-            btnUploadVideo.Location = new Point(493, 284);
+            btnUploadVideo.Location = new Point(366, 444);
             btnUploadVideo.Name = "btnUploadVideo";
             btnUploadVideo.Size = new Size(112, 34);
             btnUploadVideo.TabIndex = 10;
@@ -152,7 +153,7 @@
             // 
             // btnPlay
             // 
-            btnPlay.Location = new Point(494, 244);
+            btnPlay.Location = new Point(12, 484);
             btnPlay.Name = "btnPlay";
             btnPlay.Size = new Size(112, 34);
             btnPlay.TabIndex = 11;
@@ -162,7 +163,7 @@
             // 
             // btnPause
             // 
-            btnPause.Location = new Point(493, 204);
+            btnPause.Location = new Point(130, 484);
             btnPause.Name = "btnPause";
             btnPause.Size = new Size(112, 34);
             btnPause.TabIndex = 12;
@@ -172,7 +173,7 @@
             // 
             // btnDownload
             // 
-            btnDownload.Location = new Point(493, 4);
+            btnDownload.Location = new Point(248, 524);
             btnDownload.Name = "btnDownload";
             btnDownload.Size = new Size(112, 34);
             btnDownload.TabIndex = 13;
@@ -180,11 +181,22 @@
             btnDownload.UseVisualStyleBackColor = true;
             btnDownload.Click += btnDownload_Click;
             // 
+            // btnHistogram
+            // 
+            btnHistogram.Location = new Point(366, 524);
+            btnHistogram.Name = "btnHistogram";
+            btnHistogram.Size = new Size(112, 34);
+            btnHistogram.TabIndex = 14;
+            btnHistogram.Text = "Histogram";
+            btnHistogram.UseVisualStyleBackColor = true;
+            btnHistogram.Click += btnHistogram_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(618, 450);
+            ClientSize = new Size(500, 572);
+            Controls.Add(btnHistogram);
             Controls.Add(btnDownload);
             Controls.Add(btnPause);
             Controls.Add(btnPlay);
@@ -224,5 +236,6 @@
         private Button btnPlay;
         private Button btnPause;
         private Button btnDownload;
+        private Button btnHistogram;
     }
 }

@@ -22,11 +22,15 @@ namespace IP_Project
         /*for video*/
         VideoCapture videoCapture;
         bool pause = false;
-
         private Bitmap bitmapVideo;
         private Bitmap originVideo;
         private Color currentColorVideo, newColorVideo;
         private int filter = 0;
+
+        /*for histogram*/
+        private int[] red = new int[256];
+        private int[] green = new int[256];
+        private int[] blue = new int[256];
 
         public Form1()
         {
@@ -474,6 +478,31 @@ namespace IP_Project
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 image.Save(saveFileDialog.FileName);
+        }
+
+        private void btnHistogram_Click(object sender, EventArgs e)
+        {
+            if (bitmap == null) return;
+            Color color;
+
+            for(int x = 0; x < width; x++)
+            {
+                for(int y = 0; y < height; y++)
+                {
+                    color = bitmap.GetPixel(x, y);
+                    red[color.R]++;
+                    green[color.G]++;
+                    blue[color.B]++;
+                }
+            }
+
+            Histogram histogram = new Histogram()
+            {
+                Red = red,
+                Green = green,
+                Blue = blue
+            };
+            histogram.Show();
         }
     }
 }
