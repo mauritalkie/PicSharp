@@ -16,4 +16,10 @@
     <PackageReference Include="Emgu.CV.runtime.windows" Version="4.7.0.5276" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="FaceRecognition">
+      <HintPath>bin\Debug\FaceRecognition.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
