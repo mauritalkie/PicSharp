@@ -21,30 +21,21 @@ namespace IP_Project
     {
         private VideoCapture videoCapture = null;
         private Image<Bgr, Byte> currentFrame = null;
-        Mat frame = new Mat();
+        private Mat frame = new Mat();
 
-        private bool facesDetectionEnabled = false;
-        CascadeClassifier faceCascadeClassifier = new CascadeClassifier("..\\..\\..\\haarcascade_frontalface_default.xml");
+        private CascadeClassifier faceCascadeClassifier = new CascadeClassifier("..\\..\\..\\haarcascade_frontalface_default.xml");
 
-        Image<Bgr, Byte> faceResult = null;
         private List<Image<Gray, Byte>> trainedFaces = new List<Image<Gray, byte>>();
-        List<int> personLabes = new List<int>();
+        private List<int> personLabels = new List<int>();
 
-        bool enableSaveImage = false;
+        private bool enableSaveImage = false;
         private bool isTrained = false;
-        EigenFaceRecognizer recognizer;
-        List<String> personNames = new List<String>();
+        private EigenFaceRecognizer recognizer;
+        private List<String> personNames = new List<String>();
 
         public FaceRecognition()
         {
             InitializeComponent();
-        }
-
-        private void btnCapture_Click(object sender, EventArgs e)
-        {
-            videoCapture = new VideoCapture();
-            videoCapture.ImageGrabbed += ProcessFrame;
-            videoCapture.Start();
         }
 
         private void ProcessFrame(object? sender, EventArgs e)
@@ -52,18 +43,21 @@ namespace IP_Project
             videoCapture.Retrieve(frame, 0);
             currentFrame = frame.ToImage<Bgr, Byte>().Resize(pbCapture.Width, pbCapture.Height, Inter.Cubic);
 
-            if (facesDetectionEnabled)
+            if (cbDetectFace.Checked)
             {
                 Mat grayImage = new Mat();
                 CvInvoke.CvtColor(currentFrame, grayImage, ColorConversion.Bgr2Gray);
                 CvInvoke.EqualizeHist(grayImage, grayImage);
 
                 Rectangle[] faces = faceCascadeClassifier.DetectMultiScale(grayImage, 1.1, 3, Size.Empty, Size.Empty);
+                int faceCounter = 0;
+
                 if (faces.Length > 0)
                 {
                     foreach (var face in faces)
                     {
                         CvInvoke.Rectangle(currentFrame, face, new Bgr(Color.Red).MCvScalar);
+                        CvInvoke.PutText(currentFrame, (++faceCounter).ToString(), new Point(face.X - 2, face.Y - 2), FontFace.HersheyComplex, 1.0, new Bgr(Color.Orange).MCvScalar);
 
                         Image<Bgr, Byte> resultImage = currentFrame.Convert<Bgr, Byte>();
                         resultImage.ROI = face;
@@ -85,23 +79,14 @@ namespace IP_Project
                                 }
                             });
                         }
-                        enableSaveImage = false;
 
-                        if (btnAddPerson.InvokeRequired)
-                        {
-                            btnAddPerson.Invoke(new ThreadStart(delegate
-                            {
-                                btnAddPerson.Enabled = true;
-                            }));
-                        }
+                        enableSaveImage = false;
 
                         if (isTrained)
                         {
                             Image<Gray, Byte> grayFaceResult = resultImage.Convert<Gray, Byte>().Resize(200, 200, Inter.Cubic);
                             CvInvoke.EqualizeHist(grayFaceResult, grayFaceResult);
                             var result = recognizer.Predict(grayFaceResult);
-                            //pictureBox1.Image = grayFaceResult.ToBitmap();
-                            //pictureBox2.Image = trainedFaces[result.Label].ToBitmap();
                             Debug.WriteLine(result.Label + " " + result.Distance);
                             if (result.Label != -1 && result.Distance < 2000)
                             {
@@ -122,28 +107,23 @@ namespace IP_Project
             pbCapture.Image = currentFrame.ToBitmap();
         }
 
-        private void btnDetectFace_Click(object sender, EventArgs e)
-        {
-            facesDetectionEnabled = true;
-        }
-
         private void btnAddPerson_Click(object sender, EventArgs e)
         {
-            btnSave.Enabled = true;
-            btnAddPerson.Enabled = false;
             enableSaveImage = true;
+            txtPersonName.Text = string.Empty;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            btnSave.Enabled = false;
-            btnAddPerson.Enabled = true;
-            enableSaveImage = false;
-        }
+            SaveFileDialog saveFileDialog = new SaveFileDialog()
+            {
+                Filter = "JPEG(*.JPG)|*.JPG|BMP(*.BMP)|*.BMP"
+            };
 
-        private void btnTrainImage_Click(object sender, EventArgs e)
-        {
-            trainImagesFromDir();
+            Image saveImage = pbCapture.Image;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                saveImage.Save(saveFileDialog.FileName);
         }
 
         private bool trainImagesFromDir()
@@ -151,7 +131,7 @@ namespace IP_Project
             int imagesCount = 0;
             double threshold = 2000;
             trainedFaces.Clear();
-            personLabes.Clear();
+            personLabels.Clear();
             personNames.Clear();
 
             try
@@ -164,7 +144,7 @@ namespace IP_Project
                     Image<Gray, Byte> trainedImage = new Image<Gray, Byte>(file);
                     CvInvoke.EqualizeHist(trainedImage, trainedImage);
                     trainedFaces.Add(trainedImage);
-                    personLabes.Add(imagesCount);
+                    personLabels.Add(imagesCount);
                     string name = file.Split('\\').Last().Split('_')[0];
                     personNames.Add(name);
                     imagesCount++;
@@ -174,7 +154,7 @@ namespace IP_Project
                 if (trainedFaces.Count > 0)
                 {
                     Image<Gray, Byte>[] faces = trainedFaces.ToArray();
-                    int[] labels = personLabes.ToArray();
+                    int[] labels = personLabels.ToArray();
 
                     VectorOfMat vectorOfMat = new VectorOfMat();
                     VectorOfInt vectorOfInt = new VectorOfInt();
@@ -202,6 +182,95 @@ namespace IP_Project
                 MessageBox.Show(ex.Message);
                 return false;
             }
+        }
+
+        private void cbTrainImage_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbTrainImage.Checked) trainImagesFromDir();
+            else isTrained = false;
+        }
+
+        private void FaceRecognition_Load(object sender, EventArgs e)
+        {
+            disableComponents();
+        }
+
+        private void FaceRecognition_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void cbActivateCamera_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbActivateCamera.Checked)
+            {
+                videoCapture = new VideoCapture();
+                videoCapture.ImageGrabbed += ProcessFrame;
+                videoCapture.Start();
+
+                cbDetectFace.Enabled = true;
+                btnSave.Enabled = true;
+            }
+            else
+            {
+                videoCapture.Dispose();
+
+                cbDetectFace.Checked = false;
+                cbTrainImage.Checked = false;
+                pbCapture.Image = null;
+                pbCaptured.Image = null;
+                txtPersonName.Text = string.Empty;
+
+                disableComponents();
+            }
+        }
+
+        private void disableComponents()
+        {
+            cbDetectFace.Enabled = false;
+            cbTrainImage.Enabled = false;
+            txtPersonName.Enabled = false;
+            btnAddPerson.Enabled = false;
+            btnSave.Enabled = false;
+        }
+
+        private void cbDetectFace_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbDetectFace.Checked)
+            {
+                cbTrainImage.Enabled = true;
+                txtPersonName.Enabled = true;
+                btnAddPerson.Enabled = true;
+            }
+            else
+            {
+                cbTrainImage.Checked = false;
+                cbTrainImage.Enabled = false;
+            }
+        }
+
+        private void btnUserManual_Click(object sender, EventArgs e)
+        {
+            Program.userManual = new UserManual() { StartPosition = FormStartPosition.CenterScreen };
+            Program.userManual.Show();
+            if (videoCapture != null) videoCapture.Dispose();
+            DestroyHandle();
+        }
+
+        private void btnImages_Click(object sender, EventArgs e)
+        {
+            Images images = new Images() { StartPosition = FormStartPosition.CenterScreen };
+            images.Show();
+            if (videoCapture != null) videoCapture.Dispose();
+            DestroyHandle();
+        }
+
+        private void btnVideos_Click(object sender, EventArgs e)
+        {
+            Videos videos = new Videos() { StartPosition = FormStartPosition.CenterScreen };
+            videos.Show();
+            if (videoCapture != null) videoCapture.Dispose();
+            DestroyHandle();
         }
     }
 }
