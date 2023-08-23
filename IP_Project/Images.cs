@@ -121,7 +121,7 @@ namespace IP_Project
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog()
             {
-                Filter = "JPEG(*.JPG)|*.JPG|BMP(*.BMP)|*.BMP"
+                Filter = "(*.jpg)|*.jpg|(*.bmp)|*.bmp|(*.jpeg)|*.jpeg|(*.png)|*.png"
             };
 
             Image saveImage = pbFilteredImage.Image;
@@ -180,6 +180,13 @@ namespace IP_Project
         {
             FaceRecognition faceRecognition = new FaceRecognition() { StartPosition = FormStartPosition.CenterScreen };
             faceRecognition.Show();
+            DestroyHandle();
+        }
+
+        private void btnCount_Click(object sender, EventArgs e)
+        {
+            FaceCount faceCount = new FaceCount() { StartPosition = FormStartPosition.CenterScreen };
+            faceCount.Show();
             DestroyHandle();
         }
     }

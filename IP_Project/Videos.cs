@@ -177,5 +177,12 @@ namespace IP_Project
             faceRecognition.Show();
             DestroyHandle();
         }
+
+        private void btnCount_Click(object sender, EventArgs e)
+        {
+            FaceCount faceCount = new FaceCount() { StartPosition = FormStartPosition.CenterScreen };
+            faceCount.Show();
+            DestroyHandle();
+        }
     }
 }

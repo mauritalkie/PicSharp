@@ -38,6 +38,7 @@
             label1 = new Label();
             cbActivateCamera = new CheckBox();
             panel1 = new Panel();
+            btnCount = new Button();
             btnRecognition = new Button();
             btnVideos = new Button();
             btnImages = new Button();
@@ -60,7 +61,7 @@
             // 
             // txtPersonName
             // 
-            txtPersonName.Location = new Point(875, 287);
+            txtPersonName.Location = new Point(883, 287);
             txtPersonName.Name = "txtPersonName";
             txtPersonName.Size = new Size(161, 31);
             txtPersonName.TabIndex = 2;
@@ -71,7 +72,7 @@
             btnAddPerson.FlatAppearance.BorderSize = 0;
             btnAddPerson.FlatStyle = FlatStyle.Flat;
             btnAddPerson.ForeColor = Color.Gainsboro;
-            btnAddPerson.Location = new Point(875, 338);
+            btnAddPerson.Location = new Point(883, 338);
             btnAddPerson.Name = "btnAddPerson";
             btnAddPerson.Size = new Size(161, 34);
             btnAddPerson.TabIndex = 1;
@@ -83,9 +84,9 @@
             // 
             pbCaptured.BackColor = SystemColors.ActiveBorder;
             pbCaptured.BorderStyle = BorderStyle.FixedSingle;
-            pbCaptured.Location = new Point(886, 93);
+            pbCaptured.Location = new Point(883, 80);
             pbCaptured.Name = "pbCaptured";
-            pbCaptured.Size = new Size(150, 150);
+            pbCaptured.Size = new Size(161, 163);
             pbCaptured.TabIndex = 3;
             pbCaptured.TabStop = false;
             // 
@@ -135,7 +136,7 @@
             // 
             label1.AutoSize = true;
             label1.ForeColor = Color.Gainsboro;
-            label1.Location = new Point(918, 259);
+            label1.Location = new Point(926, 259);
             label1.Name = "label1";
             label1.Size = new Size(78, 25);
             label1.TabIndex = 9;
@@ -158,6 +159,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(51, 51, 76);
+            panel1.Controls.Add(btnCount);
             panel1.Controls.Add(btnRecognition);
             panel1.Controls.Add(btnVideos);
             panel1.Controls.Add(btnImages);
@@ -168,6 +170,20 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(220, 450);
             panel1.TabIndex = 11;
+            // 
+            // btnCount
+            // 
+            btnCount.Dock = DockStyle.Top;
+            btnCount.FlatAppearance.BorderSize = 0;
+            btnCount.FlatStyle = FlatStyle.Flat;
+            btnCount.ForeColor = Color.Gainsboro;
+            btnCount.Location = new Point(0, 320);
+            btnCount.Name = "btnCount";
+            btnCount.Size = new Size(220, 60);
+            btnCount.TabIndex = 10;
+            btnCount.Text = "Conteo";
+            btnCount.UseVisualStyleBackColor = true;
+            btnCount.Click += btnCount_Click;
             // 
             // btnRecognition
             // 
@@ -242,7 +258,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(30, 30, 30);
+            BackColor = Color.FromArgb(32, 33, 34);
             ClientSize = new Size(1070, 450);
             Controls.Add(panel1);
             Controls.Add(cbActivateCamera);
@@ -255,7 +271,7 @@
             Controls.Add(btnAddPerson);
             Controls.Add(pbCapture);
             Name = "FaceRecognition";
-            Text = "FaceRecognition";
+            Text = "Reconocimiento";
             FormClosing += FaceRecognition_FormClosing;
             Load += FaceRecognition_Load;
             ((System.ComponentModel.ISupportInitialize)pbCapture).EndInit();
@@ -282,5 +298,6 @@
         private Button btnImages;
         private Button btnUserManual;
         private Panel panel2;
+        private Button btnCount;
     }
 }

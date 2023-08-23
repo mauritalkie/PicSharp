@@ -35,7 +35,6 @@ namespace IP_Project.FilterClasses
                 {
                     p = bmp.GetPixel(x, y);
 
-                    //extract pixel component ARGB
                     int aa = p.A;
                     int rr = p.R;
                     int gg = p.G;

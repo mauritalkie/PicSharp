@@ -32,11 +32,14 @@
             btnPrev = new Button();
             btnNext = new Button();
             panel1 = new Panel();
+            btnCount = new Button();
             btnRecognition = new Button();
             btnVideos = new Button();
             btnImages = new Button();
             btnUserManual = new Button();
             panel2 = new Panel();
+            lblInfo = new Label();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)pbPreview).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -45,7 +48,7 @@
             // 
             pbPreview.BackColor = SystemColors.ActiveBorder;
             pbPreview.BorderStyle = BorderStyle.FixedSingle;
-            pbPreview.Location = new Point(268, 33);
+            pbPreview.Location = new Point(267, 84);
             pbPreview.Name = "pbPreview";
             pbPreview.Size = new Size(924, 365);
             pbPreview.TabIndex = 1;
@@ -57,7 +60,7 @@
             btnPrev.FlatAppearance.BorderSize = 0;
             btnPrev.FlatStyle = FlatStyle.Flat;
             btnPrev.ForeColor = Color.Gainsboro;
-            btnPrev.Location = new Point(385, 404);
+            btnPrev.Location = new Point(369, 537);
             btnPrev.Name = "btnPrev";
             btnPrev.Size = new Size(112, 34);
             btnPrev.TabIndex = 2;
@@ -71,7 +74,7 @@
             btnNext.FlatAppearance.BorderSize = 0;
             btnNext.FlatStyle = FlatStyle.Flat;
             btnNext.ForeColor = Color.Gainsboro;
-            btnNext.Location = new Point(997, 404);
+            btnNext.Location = new Point(981, 537);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(112, 34);
             btnNext.TabIndex = 3;
@@ -82,6 +85,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(51, 51, 76);
+            panel1.Controls.Add(btnCount);
             panel1.Controls.Add(btnRecognition);
             panel1.Controls.Add(btnVideos);
             panel1.Controls.Add(btnImages);
@@ -90,8 +94,22 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(220, 450);
+            panel1.Size = new Size(220, 583);
             panel1.TabIndex = 4;
+            // 
+            // btnCount
+            // 
+            btnCount.Dock = DockStyle.Top;
+            btnCount.FlatAppearance.BorderSize = 0;
+            btnCount.FlatStyle = FlatStyle.Flat;
+            btnCount.ForeColor = Color.Gainsboro;
+            btnCount.Location = new Point(0, 320);
+            btnCount.Name = "btnCount";
+            btnCount.Size = new Size(220, 60);
+            btnCount.TabIndex = 10;
+            btnCount.Text = "Conteo";
+            btnCount.UseVisualStyleBackColor = true;
+            btnCount.Click += btnCount_Click;
             // 
             // btnRecognition
             // 
@@ -160,12 +178,35 @@
             panel2.Size = new Size(220, 80);
             panel2.TabIndex = 0;
             // 
+            // lblInfo
+            // 
+            lblInfo.AutoSize = true;
+            lblInfo.ForeColor = Color.Gainsboro;
+            lblInfo.Location = new Point(267, 452);
+            lblInfo.Name = "lblInfo";
+            lblInfo.Size = new Size(59, 25);
+            lblInfo.TabIndex = 5;
+            lblInfo.Text = "label1";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 27F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.Gainsboro;
+            label1.Location = new Point(348, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(769, 72);
+            label1.TabIndex = 6;
+            label1.Text = "Manual de usuario de PicSharp";
+            // 
             // UserManual
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(30, 30, 30);
-            ClientSize = new Size(1242, 450);
+            BackColor = Color.FromArgb(32, 33, 34);
+            ClientSize = new Size(1242, 583);
+            Controls.Add(label1);
+            Controls.Add(lblInfo);
             Controls.Add(panel1);
             Controls.Add(btnNext);
             Controls.Add(btnPrev);
@@ -177,6 +218,7 @@
             ((System.ComponentModel.ISupportInitialize)pbPreview).EndInit();
             panel1.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -189,5 +231,8 @@
         private Button btnRecognition;
         private Button btnVideos;
         private Button btnImages;
+        private Button btnCount;
+        private Label lblInfo;
+        private Label label1;
     }
 }

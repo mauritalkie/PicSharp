@@ -1,6 +1,6 @@
 ﻿namespace IP_Project
 {
-    partial class Images
+    partial class FaceCount
     {
         /// <summary>
         /// Required designer variable.
@@ -28,74 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pbOriginImage = new PictureBox();
-            pbFilteredImage = new PictureBox();
-            btnOriginHistogram = new Button();
-            btnFilteredHistogram = new Button();
+            pbDisplay = new PictureBox();
+            cbDevices = new ComboBox();
             btnLoadImage = new Button();
-            btnSaveImage = new Button();
-            cbFilters = new ComboBox();
+            rbCamera = new RadioButton();
+            rbImage = new RadioButton();
+            lblDetectedFaces = new Label();
+            btnCameraState = new Button();
+            label3 = new Label();
             label1 = new Label();
             panel1 = new Panel();
+            btnCount = new Button();
             btnRecognition = new Button();
             btnVideos = new Button();
             btnImages = new Button();
             btnUserManual = new Button();
             panel2 = new Panel();
-            label2 = new Label();
-            btnCount = new Button();
-            ((System.ComponentModel.ISupportInitialize)pbOriginImage).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pbFilteredImage).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbDisplay).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // pbOriginImage
+            // pbDisplay
             // 
-            pbOriginImage.BackColor = SystemColors.ActiveBorder;
-            pbOriginImage.BorderStyle = BorderStyle.FixedSingle;
-            pbOriginImage.Location = new Point(261, 98);
-            pbOriginImage.Name = "pbOriginImage";
-            pbOriginImage.Size = new Size(300, 300);
-            pbOriginImage.TabIndex = 0;
-            pbOriginImage.TabStop = false;
+            pbDisplay.BackColor = SystemColors.ActiveBorder;
+            pbDisplay.BorderStyle = BorderStyle.FixedSingle;
+            pbDisplay.Location = new Point(245, 12);
+            pbDisplay.Name = "pbDisplay";
+            pbDisplay.Size = new Size(543, 338);
+            pbDisplay.TabIndex = 0;
+            pbDisplay.TabStop = false;
             // 
-            // pbFilteredImage
+            // cbDevices
             // 
-            pbFilteredImage.BackColor = SystemColors.ActiveBorder;
-            pbFilteredImage.BorderStyle = BorderStyle.FixedSingle;
-            pbFilteredImage.Location = new Point(650, 98);
-            pbFilteredImage.Name = "pbFilteredImage";
-            pbFilteredImage.Size = new Size(300, 300);
-            pbFilteredImage.TabIndex = 0;
-            pbFilteredImage.TabStop = false;
-            // 
-            // btnOriginHistogram
-            // 
-            btnOriginHistogram.BackColor = Color.Navy;
-            btnOriginHistogram.FlatAppearance.BorderSize = 0;
-            btnOriginHistogram.FlatStyle = FlatStyle.Flat;
-            btnOriginHistogram.ForeColor = Color.Gainsboro;
-            btnOriginHistogram.Location = new Point(445, 404);
-            btnOriginHistogram.Name = "btnOriginHistogram";
-            btnOriginHistogram.Size = new Size(116, 34);
-            btnOriginHistogram.TabIndex = 2;
-            btnOriginHistogram.Text = "Histograma";
-            btnOriginHistogram.UseVisualStyleBackColor = false;
-            btnOriginHistogram.Click += btnOriginHistogram_Click;
-            // 
-            // btnFilteredHistogram
-            // 
-            btnFilteredHistogram.BackColor = Color.Navy;
-            btnFilteredHistogram.FlatAppearance.BorderSize = 0;
-            btnFilteredHistogram.FlatStyle = FlatStyle.Flat;
-            btnFilteredHistogram.ForeColor = Color.Gainsboro;
-            btnFilteredHistogram.Location = new Point(834, 404);
-            btnFilteredHistogram.Name = "btnFilteredHistogram";
-            btnFilteredHistogram.Size = new Size(116, 34);
-            btnFilteredHistogram.TabIndex = 3;
-            btnFilteredHistogram.Text = "Histograma";
-            btnFilteredHistogram.UseVisualStyleBackColor = false;
-            btnFilteredHistogram.Click += btnFilteredHistogram_Click;
+            cbDevices.FlatStyle = FlatStyle.Flat;
+            cbDevices.FormattingEnabled = true;
+            cbDevices.Location = new Point(794, 186);
+            cbDevices.Name = "cbDevices";
+            cbDevices.Size = new Size(186, 33);
+            cbDevices.TabIndex = 1;
+            cbDevices.SelectedIndexChanged += cbDevices_SelectedIndexChanged;
             // 
             // btnLoadImage
             // 
@@ -103,47 +74,88 @@
             btnLoadImage.FlatAppearance.BorderSize = 0;
             btnLoadImage.FlatStyle = FlatStyle.Flat;
             btnLoadImage.ForeColor = Color.Gainsboro;
-            btnLoadImage.Location = new Point(261, 404);
+            btnLoadImage.Location = new Point(607, 356);
             btnLoadImage.Name = "btnLoadImage";
             btnLoadImage.Size = new Size(112, 34);
-            btnLoadImage.TabIndex = 4;
+            btnLoadImage.TabIndex = 2;
             btnLoadImage.Text = "Cargar";
             btnLoadImage.UseVisualStyleBackColor = false;
             btnLoadImage.Click += btnLoadImage_Click;
             // 
-            // btnSaveImage
+            // rbCamera
             // 
-            btnSaveImage.BackColor = Color.Navy;
-            btnSaveImage.FlatAppearance.BorderSize = 0;
-            btnSaveImage.FlatStyle = FlatStyle.Flat;
-            btnSaveImage.ForeColor = Color.Gainsboro;
-            btnSaveImage.Location = new Point(650, 404);
-            btnSaveImage.Name = "btnSaveImage";
-            btnSaveImage.Size = new Size(112, 34);
-            btnSaveImage.TabIndex = 5;
-            btnSaveImage.Text = "Guardar";
-            btnSaveImage.UseVisualStyleBackColor = false;
-            btnSaveImage.Click += btnSaveImage_Click;
+            rbCamera.AutoSize = true;
+            rbCamera.FlatAppearance.BorderSize = 0;
+            rbCamera.FlatStyle = FlatStyle.Flat;
+            rbCamera.ForeColor = Color.Gainsboro;
+            rbCamera.Location = new Point(805, 40);
+            rbCamera.Name = "rbCamera";
+            rbCamera.Size = new Size(95, 29);
+            rbCamera.TabIndex = 3;
+            rbCamera.TabStop = true;
+            rbCamera.Text = "Cámara";
+            rbCamera.UseVisualStyleBackColor = true;
+            rbCamera.CheckedChanged += rbCamera_CheckedChanged;
             // 
-            // cbFilters
+            // rbImage
             // 
-            cbFilters.FlatStyle = FlatStyle.Flat;
-            cbFilters.FormattingEnabled = true;
-            cbFilters.Location = new Point(687, 59);
-            cbFilters.Name = "cbFilters";
-            cbFilters.Size = new Size(220, 33);
-            cbFilters.TabIndex = 6;
-            cbFilters.SelectedIndexChanged += cbFilters_SelectedIndexChanged;
+            rbImage.AutoSize = true;
+            rbImage.FlatAppearance.BorderSize = 0;
+            rbImage.FlatStyle = FlatStyle.Flat;
+            rbImage.ForeColor = Color.Gainsboro;
+            rbImage.Location = new Point(805, 75);
+            rbImage.Name = "rbImage";
+            rbImage.Size = new Size(95, 29);
+            rbImage.TabIndex = 4;
+            rbImage.TabStop = true;
+            rbImage.Text = "Imágen";
+            rbImage.UseVisualStyleBackColor = true;
+            rbImage.CheckedChanged += rbImage_CheckedChanged;
+            // 
+            // lblDetectedFaces
+            // 
+            lblDetectedFaces.AutoSize = true;
+            lblDetectedFaces.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDetectedFaces.ForeColor = Color.Gainsboro;
+            lblDetectedFaces.Location = new Point(329, 393);
+            lblDetectedFaces.Name = "lblDetectedFaces";
+            lblDetectedFaces.Size = new Size(390, 48);
+            lblDetectedFaces.TabIndex = 5;
+            lblDetectedFaces.Text = "Número de personas: 0";
+            // 
+            // btnCameraState
+            // 
+            btnCameraState.BackColor = Color.Navy;
+            btnCameraState.FlatAppearance.BorderSize = 0;
+            btnCameraState.FlatStyle = FlatStyle.Flat;
+            btnCameraState.ForeColor = Color.Gainsboro;
+            btnCameraState.Location = new Point(319, 356);
+            btnCameraState.Name = "btnCameraState";
+            btnCameraState.Size = new Size(112, 34);
+            btnCameraState.TabIndex = 6;
+            btnCameraState.Text = "Encender";
+            btnCameraState.UseVisualStyleBackColor = false;
+            btnCameraState.Click += btnCameraState_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.ForeColor = Color.Gainsboro;
+            label3.Location = new Point(805, 158);
+            label3.Name = "label3";
+            label3.Size = new Size(166, 25);
+            label3.TabIndex = 7;
+            label3.Text = "Elige un dispositivo";
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.ForeColor = Color.Gainsboro;
-            label1.Location = new Point(716, 31);
+            label1.Location = new Point(805, 12);
             label1.Name = "label1";
-            label1.Size = new Size(161, 25);
+            label1.Size = new Size(143, 25);
             label1.TabIndex = 7;
-            label1.Text = "Seleccione un filtro";
+            label1.Text = "Elige una opción";
             // 
             // panel1
             // 
@@ -158,7 +170,21 @@
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(220, 450);
-            panel1.TabIndex = 8;
+            panel1.TabIndex = 9;
+            // 
+            // btnCount
+            // 
+            btnCount.BackColor = Color.Navy;
+            btnCount.Dock = DockStyle.Top;
+            btnCount.FlatAppearance.BorderSize = 0;
+            btnCount.FlatStyle = FlatStyle.Flat;
+            btnCount.ForeColor = Color.Gainsboro;
+            btnCount.Location = new Point(0, 320);
+            btnCount.Name = "btnCount";
+            btnCount.Size = new Size(220, 60);
+            btnCount.TabIndex = 9;
+            btnCount.Text = "Conteo";
+            btnCount.UseVisualStyleBackColor = false;
             // 
             // btnRecognition
             // 
@@ -190,7 +216,7 @@
             // 
             // btnImages
             // 
-            btnImages.BackColor = Color.Navy;
+            btnImages.BackColor = Color.FromArgb(51, 51, 76);
             btnImages.Dock = DockStyle.Top;
             btnImages.FlatAppearance.BorderSize = 0;
             btnImages.FlatStyle = FlatStyle.Flat;
@@ -201,6 +227,7 @@
             btnImages.TabIndex = 6;
             btnImages.Text = "Imágenes";
             btnImages.UseVisualStyleBackColor = false;
+            btnImages.Click += btnImages_Click;
             // 
             // btnUserManual
             // 
@@ -228,54 +255,27 @@
             panel2.Size = new Size(220, 80);
             panel2.TabIndex = 0;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.ForeColor = Color.Gainsboro;
-            label2.Location = new Point(274, 44);
-            label2.Name = "label2";
-            label2.Size = new Size(278, 48);
-            label2.TabIndex = 9;
-            label2.Text = "Imagen sin filtro";
-            // 
-            // btnCount
-            // 
-            btnCount.Dock = DockStyle.Top;
-            btnCount.FlatAppearance.BorderSize = 0;
-            btnCount.FlatStyle = FlatStyle.Flat;
-            btnCount.ForeColor = Color.Gainsboro;
-            btnCount.Location = new Point(0, 320);
-            btnCount.Name = "btnCount";
-            btnCount.Size = new Size(220, 60);
-            btnCount.TabIndex = 10;
-            btnCount.Text = "Conteo";
-            btnCount.UseVisualStyleBackColor = true;
-            btnCount.Click += btnCount_Click;
-            // 
-            // Images
+            // FaceCount
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(32, 33, 34);
-            ClientSize = new Size(995, 450);
-            Controls.Add(label2);
+            ClientSize = new Size(992, 450);
             Controls.Add(panel1);
             Controls.Add(label1);
-            Controls.Add(cbFilters);
-            Controls.Add(btnSaveImage);
+            Controls.Add(label3);
+            Controls.Add(btnCameraState);
+            Controls.Add(lblDetectedFaces);
+            Controls.Add(rbImage);
+            Controls.Add(rbCamera);
             Controls.Add(btnLoadImage);
-            Controls.Add(btnFilteredHistogram);
-            Controls.Add(btnOriginHistogram);
-            Controls.Add(pbFilteredImage);
-            Controls.Add(pbOriginImage);
-            ForeColor = SystemColors.ControlText;
-            Name = "Images";
-            Text = "Imágenes";
-            FormClosing += Images_FormClosing;
-            Load += Images_Load;
-            ((System.ComponentModel.ISupportInitialize)pbOriginImage).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pbFilteredImage).EndInit();
+            Controls.Add(cbDevices);
+            Controls.Add(pbDisplay);
+            Name = "FaceCount";
+            Text = "Conteo";
+            FormClosing += FaceCount_FormClosing;
+            Load += FaceCount_Load;
+            ((System.ComponentModel.ISupportInitialize)pbDisplay).EndInit();
             panel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -283,13 +283,14 @@
 
         #endregion
 
-        private PictureBox pbOriginImage;
-        private PictureBox pbFilteredImage;
-        private Button btnOriginHistogram;
-        private Button btnFilteredHistogram;
+        private PictureBox pbDisplay;
+        private ComboBox cbDevices;
         private Button btnLoadImage;
-        private Button btnSaveImage;
-        private ComboBox cbFilters;
+        private RadioButton rbCamera;
+        private RadioButton rbImage;
+        private Label lblDetectedFaces;
+        private Button btnCameraState;
+        private Label label3;
         private Label label1;
         private Panel panel1;
         private Button btnRecognition;
@@ -297,7 +298,6 @@
         private Button btnImages;
         private Button btnUserManual;
         private Panel panel2;
-        private Label label2;
         private Button btnCount;
     }
 }

@@ -1,0 +1,1 @@
+Asimismo se puede ver los canales RGB de la imagen seleccionada mediante la opción del histograma.

@@ -1,0 +1,1 @@
+Después de cargar la imagen, se podrá seleccionar un filtro del combobox seleccionado, el cual editará la imagen original. También podrá visualizar su propio histograma de RGB y guardarla en el ordenador.

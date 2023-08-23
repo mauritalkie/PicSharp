@@ -34,7 +34,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(30, 30, 30);
+            BackColor = Color.FromArgb(32, 33, 34);
             ClientSize = new Size(288, 274);
             Name = "Histogram";
             Text = "Histogram";

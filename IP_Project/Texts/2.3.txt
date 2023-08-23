@@ -1,0 +1,1 @@
+Después de cargar el video, se podrá seleccionar un filtro del combobox seleccionado, el cual editará el video añadiéndole el filtro seleccionado.

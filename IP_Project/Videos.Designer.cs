@@ -39,6 +39,7 @@
             btnImages = new Button();
             btnUserManual = new Button();
             panel2 = new Panel();
+            btnCount = new Button();
             ((System.ComponentModel.ISupportInitialize)pbVideo).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -73,7 +74,7 @@
             cbFilters.FormattingEnabled = true;
             cbFilters.Location = new Point(813, 64);
             cbFilters.Name = "cbFilters";
-            cbFilters.Size = new Size(205, 33);
+            cbFilters.Size = new Size(220, 33);
             cbFilters.TabIndex = 3;
             cbFilters.SelectedIndexChanged += cbFilters_SelectedIndexChanged;
             // 
@@ -104,6 +105,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(51, 51, 76);
+            panel1.Controls.Add(btnCount);
             panel1.Controls.Add(btnRecognition);
             panel1.Controls.Add(btnVideos);
             panel1.Controls.Add(btnImages);
@@ -184,11 +186,25 @@
             panel2.Size = new Size(220, 80);
             panel2.TabIndex = 0;
             // 
+            // btnCount
+            // 
+            btnCount.Dock = DockStyle.Top;
+            btnCount.FlatAppearance.BorderSize = 0;
+            btnCount.FlatStyle = FlatStyle.Flat;
+            btnCount.ForeColor = Color.Gainsboro;
+            btnCount.Location = new Point(0, 320);
+            btnCount.Name = "btnCount";
+            btnCount.Size = new Size(220, 60);
+            btnCount.TabIndex = 10;
+            btnCount.Text = "Conteo";
+            btnCount.UseVisualStyleBackColor = true;
+            btnCount.Click += btnCount_Click;
+            // 
             // Videos
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(30, 30, 30);
+            BackColor = Color.FromArgb(32, 33, 34);
             ClientSize = new Size(1117, 450);
             Controls.Add(panel1);
             Controls.Add(label1);
@@ -219,5 +235,6 @@
         private Button btnImages;
         private Button btnUserManual;
         private Panel panel2;
+        private Button btnCount;
     }
 }
