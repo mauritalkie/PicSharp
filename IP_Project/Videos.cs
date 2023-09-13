@@ -20,22 +20,20 @@ namespace IP_Project
         private Mat mat;
         private int selectedFilter = -1;
 
-        private Grayscale grayscale = new Grayscale();
         private Negative negative = new Negative();
-        private Sepia sepia = new Sepia();
-        private Noise noise = new Noise();
         private ChromaticAberration chromaticAberration = new ChromaticAberration();
-        private Sobel sobel = new Sobel();
+        private Brightness brightness = new Brightness();
+        private Contrast contrast = new Contrast();
+        private Noise noise = new Noise();
         private ColorGradient colorGradient = new ColorGradient();
 
         private enum filterType
         {
-            Grayscale,
             Negative,
-            Sepia,
-            Noise,
             ChromaticAberration,
-            Sobel,
+            Brightness,
+            Contrast,
+            Noise,
             ColorGradient
         }
 
@@ -46,11 +44,16 @@ namespace IP_Project
 
         private void Videos_Load(object sender, EventArgs e)
         {
-            string[] filters = { "Escala de grises", "Negativo", "Sepia", "Ruido", "Abominación cromática", "Sobel", "Degradado", "Sin filtro" };
+            string[] filters = { "Negativo", "Abominación cromática", "Brillo", "Contraste", "Ruido", "Degradado", "Sin filtro" };
             cbFilters.Items.AddRange(filters);
             cbFilters.DropDownStyle = ComboBoxStyle.DropDownList;
             cbFilters.Enabled = false;
+
             btnVideoState.Enabled = false;
+
+            brightness.SetBrightness(trackbar.Value);
+            contrast.SetContrast(trackbar.Value);
+            trackbar.Enabled = false;
         }
 
         private void Videos_FormClosing(object sender, FormClosingEventArgs e)
@@ -94,36 +97,36 @@ namespace IP_Project
 
         private void cbFilters_SelectedIndexChanged(object sender, EventArgs e)
         {
+            trackbar.Enabled = false;
             selectedFilter = cbFilters.SelectedIndex;
+
+            if (selectedFilter == (int)filterType.Brightness || selectedFilter == (int)filterType.Contrast)
+                trackbar.Enabled = true;
         }
 
         private void setFilter()
         {
             switch (selectedFilter)
             {
-                case (int)filterType.Grayscale:
-                    grayscale.UpdateFrame(video);
-                    video = grayscale.ApplyFilter();
-                    break;
                 case (int)filterType.Negative:
                     negative.UpdateFrame(video);
                     video = negative.ApplyFilter();
-                    break;
-                case (int)filterType.Sepia:
-                    sepia.UpdateFrame(video);
-                    video = sepia.ApplyFilter();
-                    break;
-                case (int)filterType.Noise:
-                    noise.UpdateFrame(video);
-                    video = noise.ApplyFilter();
                     break;
                 case (int)filterType.ChromaticAberration:
                     chromaticAberration.UpdateFrame(video);
                     video = chromaticAberration.ApplyFilter();
                     break;
-                case (int)filterType.Sobel:
-                    sobel.UpdateFrame(video);
-                    video = sobel.ApplyFilter();
+                case (int)filterType.Brightness:
+                    brightness.UpdateFrame(video);
+                    video = brightness.ApplyFilter();
+                    break;
+                case (int)filterType.Contrast:
+                    contrast.UpdateFrame(video);
+                    video = contrast.ApplyFilter();
+                    break;
+                case (int)filterType.Noise:
+                    noise.UpdateFrame(video);
+                    video = noise.ApplyFilter();
                     break;
                 case (int)filterType.ColorGradient:
                     colorGradient.UpdateFrame(video);
@@ -183,6 +186,12 @@ namespace IP_Project
             FaceCount faceCount = new FaceCount() { StartPosition = FormStartPosition.CenterScreen };
             faceCount.Show();
             DestroyHandle();
+        }
+
+        private void trackbar_Scroll(object sender, EventArgs e)
+        {
+            brightness.SetBrightness(trackbar.Value);
+            contrast.SetContrast(trackbar.Value);
         }
     }
 }

@@ -34,14 +34,16 @@
             btnVideoState = new Button();
             label1 = new Label();
             panel1 = new Panel();
+            btnCount = new Button();
             btnRecognition = new Button();
             btnVideos = new Button();
             btnImages = new Button();
             btnUserManual = new Button();
             panel2 = new Panel();
-            btnCount = new Button();
+            trackbar = new TrackBar();
             ((System.ComponentModel.ISupportInitialize)pbVideo).BeginInit();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)trackbar).BeginInit();
             SuspendLayout();
             // 
             // pbVideo
@@ -72,7 +74,7 @@
             // 
             cbFilters.FlatStyle = FlatStyle.Flat;
             cbFilters.FormattingEnabled = true;
-            cbFilters.Location = new Point(813, 64);
+            cbFilters.Location = new Point(288, 47);
             cbFilters.Name = "cbFilters";
             cbFilters.Size = new Size(220, 33);
             cbFilters.TabIndex = 3;
@@ -96,7 +98,7 @@
             // 
             label1.AutoSize = true;
             label1.ForeColor = Color.Gainsboro;
-            label1.Location = new Point(840, 36);
+            label1.Location = new Point(315, 19);
             label1.Name = "label1";
             label1.Size = new Size(161, 25);
             label1.TabIndex = 5;
@@ -116,6 +118,20 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(220, 450);
             panel1.TabIndex = 9;
+            // 
+            // btnCount
+            // 
+            btnCount.Dock = DockStyle.Top;
+            btnCount.FlatAppearance.BorderSize = 0;
+            btnCount.FlatStyle = FlatStyle.Flat;
+            btnCount.ForeColor = Color.Gainsboro;
+            btnCount.Location = new Point(0, 320);
+            btnCount.Name = "btnCount";
+            btnCount.Size = new Size(220, 60);
+            btnCount.TabIndex = 10;
+            btnCount.Text = "Conteo";
+            btnCount.UseVisualStyleBackColor = true;
+            btnCount.Click += btnCount_Click;
             // 
             // btnRecognition
             // 
@@ -186,19 +202,16 @@
             panel2.Size = new Size(220, 80);
             panel2.TabIndex = 0;
             // 
-            // btnCount
+            // trackbar
             // 
-            btnCount.Dock = DockStyle.Top;
-            btnCount.FlatAppearance.BorderSize = 0;
-            btnCount.FlatStyle = FlatStyle.Flat;
-            btnCount.ForeColor = Color.Gainsboro;
-            btnCount.Location = new Point(0, 320);
-            btnCount.Name = "btnCount";
-            btnCount.Size = new Size(220, 60);
-            btnCount.TabIndex = 10;
-            btnCount.Text = "Conteo";
-            btnCount.UseVisualStyleBackColor = true;
-            btnCount.Click += btnCount_Click;
+            trackbar.Location = new Point(527, 28);
+            trackbar.Maximum = 15;
+            trackbar.Minimum = 5;
+            trackbar.Name = "trackbar";
+            trackbar.Size = new Size(528, 69);
+            trackbar.TabIndex = 10;
+            trackbar.Value = 10;
+            trackbar.Scroll += trackbar_Scroll;
             // 
             // Videos
             // 
@@ -206,6 +219,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(32, 33, 34);
             ClientSize = new Size(1117, 450);
+            Controls.Add(trackbar);
             Controls.Add(panel1);
             Controls.Add(label1);
             Controls.Add(btnVideoState);
@@ -218,6 +232,7 @@
             Load += Videos_Load;
             ((System.ComponentModel.ISupportInitialize)pbVideo).EndInit();
             panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)trackbar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -236,5 +251,6 @@
         private Button btnUserManual;
         private Panel panel2;
         private Button btnCount;
+        private TrackBar trackbar;
     }
 }

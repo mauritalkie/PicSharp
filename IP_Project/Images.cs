@@ -15,16 +15,19 @@ namespace IP_Project
     public partial class Images : Form
     {
         private Bitmap originImage, filteredImage;
+        private int clusters;
+        private int redBar, greenBar, blueBar;
+        private ClusteringSegmentation clusteringSegmentation;
+        private ColorTint colorTint;
 
         private enum filterType
         {
-            Grayscale,
-            Negative,
-            Sepia,
-            Noise,
-            ChromaticAberration,
+            BoundaryExtraction,
+            ClusteringSegmentation,
             Sobel,
-            ColorGradient
+            AlternativeColor,
+            GaussianBlur,
+            ColorTint
         }
 
         public Images()
@@ -34,7 +37,7 @@ namespace IP_Project
 
         private void Images_Load(object sender, EventArgs e)
         {
-            string[] filters = { "Escala de grises", "Negativo", "Sepia", "Ruido", "Abominación cromática", "Sobel", "Degradado" };
+            string[] filters = { "Extracción", "Segmentación", "Sobel", "Alternativo", "Difuminado", "Tinte" };
             cbFilters.Items.AddRange(filters);
             cbFilters.DropDownStyle = ComboBoxStyle.DropDownList;
 
@@ -42,6 +45,13 @@ namespace IP_Project
             btnOriginHistogram.Enabled = false;
             btnSaveImage.Enabled = false;
             btnFilteredHistogram.Enabled = false;
+
+            clusters = tbClusters.Value;
+            redBar = tbRed.Value;
+            greenBar = tbGreen.Value;
+            blueBar = tbBlue.Value;
+
+            disableTrackbars();
         }
 
         private void Images_FormClosing(object sender, FormClosingEventArgs e)
@@ -77,36 +87,40 @@ namespace IP_Project
 
         private void cbFilters_SelectedIndexChanged(object sender, EventArgs e)
         {
+            disableTrackbars();
+
             int selectedFilter = cbFilters.SelectedIndex;
             switch (selectedFilter)
             {
-                case (int)filterType.Grayscale:
-                    Grayscale grayscale = new Grayscale(originImage);
-                    filteredImage = grayscale.ApplyFilter();
+                case (int)filterType.BoundaryExtraction:
+                    BoundaryExtraction boundaryExtraction = new BoundaryExtraction(originImage);
+                    filteredImage = boundaryExtraction.ApplyFilter();
                     break;
-                case (int)filterType.Negative:
-                    Negative negative = new Negative(originImage);
-                    filteredImage = negative.ApplyFilter();
-                    break;
-                case (int)filterType.Sepia:
-                    Sepia sepia = new Sepia(originImage);
-                    filteredImage = sepia.ApplyFilter();
-                    break;
-                case (int)filterType.Noise:
-                    Noise noise = new Noise(originImage);
-                    filteredImage = noise.ApplyFilter();
-                    break;
-                case (int)filterType.ChromaticAberration:
-                    ChromaticAberration chromaticAberration = new ChromaticAberration(originImage);
-                    filteredImage = chromaticAberration.ApplyFilter();
+                case (int)filterType.ClusteringSegmentation:
+                    tbClusters.Enabled = true;
+
+                    clusteringSegmentation = new ClusteringSegmentation(originImage, clusters);
+                    filteredImage = clusteringSegmentation.ApplyFilter();
                     break;
                 case (int)filterType.Sobel:
                     Sobel sobel = new Sobel(originImage);
                     filteredImage = sobel.ApplyFilter();
                     break;
-                case (int)filterType.ColorGradient:
-                    ColorGradient colorGradient = new ColorGradient(originImage);
-                    filteredImage = colorGradient.ApplyFilter();
+                case (int)filterType.AlternativeColor:
+                    AlternativeColor alternativeColor = new AlternativeColor(originImage);
+                    filteredImage = alternativeColor.ApplyFilter();
+                    break;
+                case (int)filterType.GaussianBlur:
+                    GaussianBlur gaussianBlur = new GaussianBlur(originImage);
+                    filteredImage = gaussianBlur.ApplyFilter();
+                    break;
+                case (int)filterType.ColorTint:
+                    tbRed.Enabled = true;
+                    tbGreen.Enabled = true;
+                    tbBlue.Enabled = true;
+
+                    colorTint = new ColorTint(originImage, redBar, greenBar, blueBar);
+                    filteredImage = colorTint.ApplyFilter();
                     break;
             }
 
@@ -188,6 +202,46 @@ namespace IP_Project
             FaceCount faceCount = new FaceCount() { StartPosition = FormStartPosition.CenterScreen };
             faceCount.Show();
             DestroyHandle();
+        }
+
+        private void tbRed_Scroll(object sender, EventArgs e)
+        {
+            redBar = tbRed.Value;
+            colorTint.SetRed(redBar);
+            filteredImage = colorTint.ApplyFilter();
+            pbFilteredImage.Image = filteredImage;
+        }
+
+        private void tbGreen_Scroll(object sender, EventArgs e)
+        {
+            greenBar = tbGreen.Value;
+            colorTint.SetGreen(greenBar);
+            filteredImage = colorTint.ApplyFilter();
+            pbFilteredImage.Image = filteredImage;
+        }
+
+        private void tbBlue_Scroll(object sender, EventArgs e)
+        {
+            blueBar = tbBlue.Value;
+            colorTint.SetBlue(blueBar);
+            filteredImage = colorTint.ApplyFilter();
+            pbFilteredImage.Image = filteredImage;
+        }
+
+        private void tbClusters_Scroll(object sender, EventArgs e)
+        {
+            clusters = tbClusters.Value;
+            clusteringSegmentation.SetClusters(clusters);
+            filteredImage = clusteringSegmentation.ApplyFilter();
+            pbFilteredImage.Image = filteredImage;
+        }
+
+        private void disableTrackbars()
+        {
+            tbClusters.Enabled = false;
+            tbRed.Enabled = false;
+            tbGreen.Enabled = false;
+            tbBlue.Enabled = false;
         }
     }
 }
