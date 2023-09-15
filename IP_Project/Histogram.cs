@@ -19,9 +19,16 @@ namespace IP_Project
         private int highestGreen = 0;
         private int highestBlue = 0;
 
+        private Images parentWindow;
+        private bool isOrigin, isFiltered;
+
         public int[] Red { set { red = value; } }
         public int[] Green { set { green = value; } }
         public int[] Blue { set { blue = value; } }
+
+        public Images ParentWindow { set { parentWindow = value; } }
+        public bool IsOrigin { set { isOrigin = value; } }
+        public bool IsFiltered { set { isFiltered = value; } }
 
         public Histogram()
         {
@@ -64,6 +71,12 @@ namespace IP_Project
 
             for (int n = 0; n < 256; n++)
                 graphics.DrawLine(bluePen, n + 20, 270, n + 20, 270 - blue[n]);
+        }
+
+        private void Histogram_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (isOrigin) parentWindow.OriginChild = null;
+            if (isFiltered) parentWindow.FilteredChild = null;
         }
     }
 }

@@ -38,6 +38,7 @@
             ClientSize = new Size(288, 274);
             Name = "Histogram";
             Text = "Histogram";
+            FormClosing += Histogram_FormClosing;
             Load += Histogram_Load;
             Paint += Histogram_Paint;
             ResumeLayout(false);

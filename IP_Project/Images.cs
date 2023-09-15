@@ -19,6 +19,10 @@ namespace IP_Project
         private int redBar, greenBar, blueBar;
         private ClusteringSegmentation clusteringSegmentation;
         private ColorTint colorTint;
+        private Histogram originChild, filteredChild;
+
+        public Histogram OriginChild { set { originChild = value; } }
+        public Histogram FilteredChild { set { filteredChild = value; } }
 
         private enum filterType
         {
@@ -82,7 +86,7 @@ namespace IP_Project
 
         private void btnOriginHistogram_Click(object sender, EventArgs e)
         {
-            getHistogram(originImage);
+            getHistogram(originImage, ref originChild, true, false);
         }
 
         private void cbFilters_SelectedIndexChanged(object sender, EventArgs e)
@@ -146,11 +150,13 @@ namespace IP_Project
 
         private void btnFilteredHistogram_Click(object sender, EventArgs e)
         {
-            getHistogram(filteredImage);
+            getHistogram(filteredImage, ref filteredChild, false, true);
         }
 
-        private void getHistogram(Bitmap histogramImage)
+        private void getHistogram(Bitmap histogramImage, ref Histogram histogram, bool isOrigin, bool isFiltered)
         {
+            if (histogram != null) return;
+
             int[] red = new int[256];
             int[] green = new int[256];
             int[] blue = new int[256];
@@ -167,11 +173,14 @@ namespace IP_Project
                 }
             }
 
-            Histogram histogram = new Histogram()
+            histogram = new Histogram()
             {
                 Red = red,
                 Green = green,
-                Blue = blue
+                Blue = blue,
+                ParentWindow = this,
+                IsOrigin = isOrigin,
+                IsFiltered = isFiltered
             };
             histogram.Show();
         }
@@ -180,6 +189,7 @@ namespace IP_Project
         {
             Program.userManual = new UserManual() { StartPosition = FormStartPosition.CenterScreen };
             Program.userManual.Show();
+            closeHistogramChilds();
             DestroyHandle();
         }
 
@@ -187,6 +197,7 @@ namespace IP_Project
         {
             Videos videos = new Videos() { StartPosition = FormStartPosition.CenterScreen };
             videos.Show();
+            closeHistogramChilds();
             DestroyHandle();
         }
 
@@ -194,6 +205,7 @@ namespace IP_Project
         {
             FaceRecognition faceRecognition = new FaceRecognition() { StartPosition = FormStartPosition.CenterScreen };
             faceRecognition.Show();
+            closeHistogramChilds();
             DestroyHandle();
         }
 
@@ -201,6 +213,7 @@ namespace IP_Project
         {
             FaceCount faceCount = new FaceCount() { StartPosition = FormStartPosition.CenterScreen };
             faceCount.Show();
+            closeHistogramChilds();
             DestroyHandle();
         }
 
@@ -242,6 +255,12 @@ namespace IP_Project
             tbRed.Enabled = false;
             tbGreen.Enabled = false;
             tbBlue.Enabled = false;
+        }
+
+        private void closeHistogramChilds()
+        {
+            if (originChild != null) originChild.Close();
+            if (filteredChild != null) filteredChild.Close();
         }
     }
 }

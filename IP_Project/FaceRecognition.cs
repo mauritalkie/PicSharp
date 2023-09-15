@@ -56,8 +56,11 @@ namespace IP_Project
                 {
                     foreach (var face in faces)
                     {
-                        CvInvoke.Rectangle(currentFrame, face, new Bgr(Color.Red).MCvScalar);
-                        CvInvoke.PutText(currentFrame, (++faceCounter).ToString(), new Point(face.X - 2, face.Y - 2), FontFace.HersheyComplex, 1.0, new Bgr(Color.Orange).MCvScalar);
+                        if (!isTrained)
+                        {
+                            CvInvoke.Rectangle(currentFrame, face, new Bgr(Color.Red).MCvScalar);
+                            CvInvoke.PutText(currentFrame, (++faceCounter).ToString(), new Point(face.X - 2, face.Y - 2), FontFace.HersheyComplex, 1.0, new Bgr(Color.Orange).MCvScalar);
+                        }
 
                         Image<Bgr, Byte> resultImage = currentFrame.Convert<Bgr, Byte>();
                         resultImage.ROI = face;
@@ -66,7 +69,7 @@ namespace IP_Project
 
                         if (enableSaveImage)
                         {
-                            string path = Directory.GetCurrentDirectory() + @"TrainedImages";
+                            string path = "..\\..\\..\\TrainedImages";
                             if (!Directory.Exists(path))
                                 Directory.CreateDirectory(path);
 
@@ -110,7 +113,6 @@ namespace IP_Project
         private void btnAddPerson_Click(object sender, EventArgs e)
         {
             enableSaveImage = true;
-            txtPersonName.Text = string.Empty;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -136,7 +138,7 @@ namespace IP_Project
 
             try
             {
-                string path = Directory.GetCurrentDirectory() + @"TrainedImages";
+                string path = "..\\..\\..\\TrainedImages";
                 string[] files = Directory.GetFiles(path, "*.jpg", SearchOption.AllDirectories);
 
                 foreach (var file in files)
