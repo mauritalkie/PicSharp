@@ -1,0 +1,1 @@
+Para activar la cámara se debe marcar la opción señalada, asimismo podrá apagarse tras desmarcar dicha opción.

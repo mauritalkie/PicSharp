@@ -1,0 +1,1 @@
+Después de activar la cámara varias opciones más serán activadas; Para hacer que la aplicación reconozca a una persona se deberá marcar las siguientes dos opciones, luego de eso escribir un nombre en el textbox y presionar el botón de Agregar persona. La ventana también tiene la opción de tomar fotografías mediante el botón de Guardar.

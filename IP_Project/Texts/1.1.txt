@@ -1,0 +1,1 @@
+Para cargar una imagen que se deseé editar, se debe presionar el botón señalado; después de esto dicha imagen podrá ser seleccionada desde el explorador de archivos.

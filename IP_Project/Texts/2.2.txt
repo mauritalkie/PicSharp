@@ -1,0 +1,1 @@
+Una vez cargado el video, este podrá ser pausado y reproducido presionando el botón señalado cada vez que se deseé.

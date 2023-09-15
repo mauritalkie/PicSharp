@@ -1,0 +1,1 @@
+Para el caso de la cámara, primero se debe seleccionar un dispositivo del combobox, después de eso presionar el botón de encender, también se podrá apagar se así lo desea.
