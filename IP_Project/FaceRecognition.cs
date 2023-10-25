@@ -58,8 +58,8 @@ namespace IP_Project
                     {
                         if (!isTrained)
                         {
-                            CvInvoke.Rectangle(currentFrame, face, new Bgr(Color.Red).MCvScalar);
-                            CvInvoke.PutText(currentFrame, (++faceCounter).ToString(), new Point(face.X - 2, face.Y - 2), FontFace.HersheyComplex, 1.0, new Bgr(Color.Orange).MCvScalar);
+                            CvInvoke.Rectangle(currentFrame, face, new Bgr(Color.Blue).MCvScalar, 2);
+                            CvInvoke.PutText(currentFrame, (++faceCounter).ToString(), new Point(face.X - 2, face.Y - 2), FontFace.HersheyComplex, 1.0, new Bgr(Color.Black).MCvScalar, 2);
                         }
 
                         Image<Bgr, Byte> resultImage = currentFrame.Convert<Bgr, Byte>();
@@ -248,6 +248,7 @@ namespace IP_Project
             {
                 cbTrainImage.Checked = false;
                 cbTrainImage.Enabled = false;
+                // pbCaptured.Image = null;
             }
         }
 

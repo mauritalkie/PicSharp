@@ -41,9 +41,21 @@
             btnUserManual = new Button();
             panel2 = new Panel();
             trackbar = new TrackBar();
+            groupBox1 = new GroupBox();
+            tbBlue = new TrackBar();
+            tbGreen = new TrackBar();
+            tbRed = new TrackBar();
+            label6 = new Label();
+            label5 = new Label();
+            label3 = new Label();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)pbVideo).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trackbar).BeginInit();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)tbBlue).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbGreen).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbRed).BeginInit();
             SuspendLayout();
             // 
             // pbVideo
@@ -204,22 +216,111 @@
             // 
             // trackbar
             // 
-            trackbar.Location = new Point(527, 28);
+            trackbar.Location = new Point(6, 351);
             trackbar.Maximum = 15;
             trackbar.Minimum = 5;
             trackbar.Name = "trackbar";
-            trackbar.Size = new Size(528, 69);
+            trackbar.Size = new Size(234, 69);
             trackbar.TabIndex = 10;
             trackbar.Value = 10;
             trackbar.Scroll += trackbar_Scroll;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(tbBlue);
+            groupBox1.Controls.Add(trackbar);
+            groupBox1.Controls.Add(tbGreen);
+            groupBox1.Controls.Add(tbRed);
+            groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(label4);
+            groupBox1.FlatStyle = FlatStyle.Flat;
+            groupBox1.ForeColor = Color.Gainsboro;
+            groupBox1.Location = new Point(1086, 12);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(246, 426);
+            groupBox1.TabIndex = 11;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Herramientas";
+            // 
+            // tbBlue
+            // 
+            tbBlue.Location = new Point(156, 55);
+            tbBlue.Name = "tbBlue";
+            tbBlue.Orientation = Orientation.Vertical;
+            tbBlue.Size = new Size(69, 265);
+            tbBlue.TabIndex = 8;
+            tbBlue.Value = 5;
+            tbBlue.Scroll += tbBlue_Scroll;
+            // 
+            // tbGreen
+            // 
+            tbGreen.Location = new Point(81, 55);
+            tbGreen.Name = "tbGreen";
+            tbGreen.Orientation = Orientation.Vertical;
+            tbGreen.Size = new Size(69, 265);
+            tbGreen.TabIndex = 8;
+            tbGreen.Value = 5;
+            tbGreen.Scroll += tbGreen_Scroll;
+            // 
+            // tbRed
+            // 
+            tbRed.Location = new Point(6, 55);
+            tbRed.Name = "tbRed";
+            tbRed.Orientation = Orientation.Vertical;
+            tbRed.Size = new Size(69, 265);
+            tbRed.TabIndex = 8;
+            tbRed.Value = 5;
+            tbRed.Scroll += tbRed_Scroll;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.ForeColor = Color.Gainsboro;
+            label6.Location = new Point(54, 323);
+            label6.Name = "label6";
+            label6.Size = new Size(144, 25);
+            label6.TabIndex = 7;
+            label6.Text = "Brillo / Contraste";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.ForeColor = Color.Gainsboro;
+            label5.Location = new Point(156, 27);
+            label5.Name = "label5";
+            label5.Size = new Size(46, 25);
+            label5.TabIndex = 7;
+            label5.Text = "Azul";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.ForeColor = Color.Gainsboro;
+            label3.Location = new Point(6, 27);
+            label3.Name = "label3";
+            label3.Size = new Size(48, 25);
+            label3.TabIndex = 7;
+            label3.Text = "Rojo";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.ForeColor = Color.Gainsboro;
+            label4.Location = new Point(81, 27);
+            label4.Name = "label4";
+            label4.Size = new Size(57, 25);
+            label4.TabIndex = 7;
+            label4.Text = "Verde";
             // 
             // Videos
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(32, 33, 34);
-            ClientSize = new Size(1117, 450);
-            Controls.Add(trackbar);
+            ClientSize = new Size(1344, 450);
+            Controls.Add(groupBox1);
             Controls.Add(panel1);
             Controls.Add(label1);
             Controls.Add(btnVideoState);
@@ -233,6 +334,11 @@
             ((System.ComponentModel.ISupportInitialize)pbVideo).EndInit();
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)trackbar).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)tbBlue).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbGreen).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbRed).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -252,5 +358,13 @@
         private Panel panel2;
         private Button btnCount;
         private TrackBar trackbar;
+        private GroupBox groupBox1;
+        private TrackBar tbBlue;
+        private TrackBar tbGreen;
+        private TrackBar tbRed;
+        private Label label6;
+        private Label label5;
+        private Label label3;
+        private Label label4;
     }
 }

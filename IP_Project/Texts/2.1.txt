@@ -1,1 +1,1 @@
-Para cargar un video que se deseé editar, se debe presionar el botón señalado; después de esto dicha video podrá ser seleccionado desde el explorador de archivos.
+Para cargar un video que se deseé editar, se debe presionar el botón señalado; después de esto dicho video podrá ser seleccionado desde el explorador de archivos.

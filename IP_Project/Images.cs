@@ -31,7 +31,11 @@ namespace IP_Project
             Sobel,
             AlternativeColor,
             GaussianBlur,
-            ColorTint
+            ColorTint,
+            Negative,
+            ChromaticAberration,
+            ColorGradient,
+            AlternativeNegative
         }
 
         public Images()
@@ -41,7 +45,8 @@ namespace IP_Project
 
         private void Images_Load(object sender, EventArgs e)
         {
-            string[] filters = { "Extracción", "Segmentación", "Sobel", "Alternativo", "Difuminado", "Tinte" };
+            string[] filters = { "Extracción", "Segmentación", "Sobel", "Alternativo", "Difuminado", 
+                "Tinte", "Negativo", "Abominación cromática", "Degradado", "Alternativo negativo" };
             cbFilters.Items.AddRange(filters);
             cbFilters.DropDownStyle = ComboBoxStyle.DropDownList;
 
@@ -125,6 +130,22 @@ namespace IP_Project
 
                     colorTint = new ColorTint(originImage, redBar, greenBar, blueBar);
                     filteredImage = colorTint.ApplyFilter();
+                    break;
+                case (int)filterType.Negative:
+                    Negative negative = new Negative(originImage);
+                    filteredImage = negative.ApplyFilter();
+                    break;
+                case (int)filterType.ChromaticAberration:
+                    ChromaticAberration chromaticAberration = new ChromaticAberration(originImage);
+                    filteredImage = chromaticAberration.ApplyFilter();
+                    break;
+                case (int)filterType.ColorGradient:
+                    ColorGradient colorGradient = new ColorGradient(originImage);
+                    filteredImage = colorGradient.ApplyFilter();
+                    break;
+                case (int)filterType.AlternativeNegative:
+                    AlternativeNegative alternativeNegative = new AlternativeNegative(originImage);
+                    filteredImage = alternativeNegative.ApplyFilter();
                     break;
             }
 

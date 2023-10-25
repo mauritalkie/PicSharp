@@ -1,1 +1,1 @@
-Hay dos maneras de usar esta funcionalidad: mediante la cámara y mediante una imágen, para eso simplemente se deberá seleccionar cualquiera de los dos radiobuttons.
+Hay dos maneras de usar esta funcionalidad: mediante la cámara y mediante una imagen, para eso simplemente se deberá seleccionar cualquiera de los dos radiobuttons.

@@ -41,7 +41,9 @@ namespace IP_Project
 
             rbCamera.AutoCheck = false;
             rbCamera.AutoCheck = true;
+
             cbDevices.DropDownStyle = ComboBoxStyle.DropDownList;
+            pbDisplay.SizeMode = PictureBoxSizeMode.StretchImage;
 
             loadDevices();
         }
@@ -67,9 +69,6 @@ namespace IP_Project
                 {
                     string path = openFileDialog.FileName;
                     Image image = Image.FromFile(path);
-
-                    pbDisplay.Image = image;
-                    pbDisplay.SizeMode = PictureBoxSizeMode.StretchImage;
 
                     CascadeClassifier cascadeClassifier = new CascadeClassifier("..\\..\\..\\haarcascade_frontalface_default.xml");
                     Image<Bgr, byte> rectangleImage = new Image<Bgr, byte>(path);
@@ -116,7 +115,7 @@ namespace IP_Project
             else
             {
                 videoCaptureDevice.SignalToStop();
-                pbDisplay.Image = null;
+                // pbDisplay.Image = null;
                 btnCameraState.Text = "Encender";
             }
         }

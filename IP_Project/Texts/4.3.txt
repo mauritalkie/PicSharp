@@ -1,1 +1,1 @@
-Para el caso de la imágen, se debe presionar el botón de Cargar, después de eso seleccionará cualquier imágen desde el explorador de archivos.
+Para el caso de la imagen, se debe presionar el botón de Cargar, después de eso seleccionará cualquier imagen desde el explorador de archivos.
