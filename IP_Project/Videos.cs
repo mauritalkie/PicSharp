@@ -26,6 +26,10 @@ namespace IP_Project
         private Contrast contrast = new Contrast();
         private Noise noise = new Noise();
         private ColorGradient colorGradient = new ColorGradient();
+        private AlternativeNegative alternativeNegative = new AlternativeNegative();
+        private ColorNoise colorNoise = new ColorNoise();
+        private AlternativeColor alternativeColor = new AlternativeColor();
+        private ColorTint colorTint = new ColorTint();
 
         private enum filterType
         {
@@ -34,7 +38,11 @@ namespace IP_Project
             Brightness,
             Contrast,
             Noise,
-            ColorGradient
+            ColorGradient,
+            AlternativeNegative,
+            ColorNoise,
+            AlternativeColor,
+            ColorTint
         }
 
         public Videos()
@@ -44,7 +52,8 @@ namespace IP_Project
 
         private void Videos_Load(object sender, EventArgs e)
         {
-            string[] filters = { "Negativo", "Abominación cromática", "Brillo", "Contraste", "Ruido", "Degradado", "Sin filtro" };
+            string[] filters = { "Negativo", "Abominación cromática", "Brillo", "Contraste", "Ruido",
+                "Degradado", "Alternativo negativo", "Ruido colorizado", "Alternativo", "Tinte", "Sin filtro" };
             cbFilters.Items.AddRange(filters);
             cbFilters.DropDownStyle = ComboBoxStyle.DropDownList;
             cbFilters.Enabled = false;
@@ -53,7 +62,11 @@ namespace IP_Project
 
             brightness.SetBrightness(trackbar.Value);
             contrast.SetContrast(trackbar.Value);
-            trackbar.Enabled = false;
+            colorTint.SetRed(tbRed.Value);
+            colorTint.SetGreen(tbGreen.Value);
+            colorTint.SetBlue(tbBlue.Value);
+
+            disableTrackbars();
         }
 
         private void Videos_FormClosing(object sender, FormClosingEventArgs e)
@@ -97,11 +110,18 @@ namespace IP_Project
 
         private void cbFilters_SelectedIndexChanged(object sender, EventArgs e)
         {
-            trackbar.Enabled = false;
+            disableTrackbars();
             selectedFilter = cbFilters.SelectedIndex;
 
             if (selectedFilter == (int)filterType.Brightness || selectedFilter == (int)filterType.Contrast)
                 trackbar.Enabled = true;
+
+            if(selectedFilter == (int)filterType.ColorTint)
+            {
+                tbRed.Enabled = true;
+                tbGreen.Enabled = true;
+                tbBlue.Enabled = true;
+            }
         }
 
         private void setFilter()
@@ -131,6 +151,22 @@ namespace IP_Project
                 case (int)filterType.ColorGradient:
                     colorGradient.UpdateFrame(video);
                     video = colorGradient.ApplyFilter();
+                    break;
+                case (int)filterType.AlternativeNegative:
+                    alternativeNegative.UpdateFrame(video);
+                    video = alternativeNegative.ApplyFilter();
+                    break;
+                case (int)filterType.ColorNoise:
+                    colorNoise.UpdateFrame(video);
+                    video = colorNoise.ApplyFilter();
+                    break;
+                case (int)filterType.AlternativeColor:
+                    alternativeColor.UpdateFrame(video);
+                    video = alternativeColor.ApplyFilter();
+                    break;
+                case (int)filterType.ColorTint:
+                    colorTint.UpdateFrame(video);
+                    video = colorTint.ApplyFilter();
                     break;
             }
         }
@@ -192,6 +228,29 @@ namespace IP_Project
         {
             brightness.SetBrightness(trackbar.Value);
             contrast.SetContrast(trackbar.Value);
+        }
+
+        private void tbRed_Scroll(object sender, EventArgs e)
+        {
+            colorTint.SetRed(tbRed.Value);
+        }
+
+        private void tbGreen_Scroll(object sender, EventArgs e)
+        {
+            colorTint.SetGreen(tbGreen.Value);
+        }
+
+        private void tbBlue_Scroll(object sender, EventArgs e)
+        {
+            colorTint.SetBlue(tbBlue.Value);
+        }
+
+        private void disableTrackbars()
+        {
+            trackbar.Enabled = false;
+            tbRed.Enabled = false;
+            tbGreen.Enabled = false;
+            tbBlue.Enabled = false;
         }
     }
 }
